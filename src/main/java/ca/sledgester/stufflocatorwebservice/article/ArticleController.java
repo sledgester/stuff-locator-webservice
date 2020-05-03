@@ -3,6 +3,7 @@ package ca.sledgester.stufflocatorwebservice.article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -23,4 +24,15 @@ public class ArticleController {
 
         return articleList;
     }
+
+    @RequestMapping(value="/controllers/searchArticles", method= RequestMethod.GET)
+    public List<Article> searchArticles(@RequestParam String name) {
+
+        List<Article> articleList = new ArrayList<>();
+
+        articleList = (List<Article>) articleRepository.findByNameContainingIgnoreCase(name);
+
+        return articleList;
+    }
+
 }

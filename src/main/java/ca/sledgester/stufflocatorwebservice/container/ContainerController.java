@@ -3,6 +3,7 @@ package ca.sledgester.stufflocatorwebservice.container;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -23,4 +24,15 @@ public class ContainerController {
 
         return containerList;
     }
+
+    @RequestMapping(value="/controllers/searchContainers", method= RequestMethod.GET)
+    public List<Container> searchContainers(@RequestParam String description) {
+
+        List<Container> containerList = new ArrayList<>();
+
+        containerList = (List<Container>) containerRepository.findByDescriptionContainingIgnoreCase(description);
+
+        return containerList;
+    }
+
 }

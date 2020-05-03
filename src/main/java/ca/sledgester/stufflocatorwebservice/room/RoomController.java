@@ -3,6 +3,7 @@ package ca.sledgester.stufflocatorwebservice.room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -20,6 +21,16 @@ public class RoomController {
         List<Room> roomList = new ArrayList<>();
 
         roomList = (List<Room>) roomRepository.findAll();
+
+        return roomList;
+    }
+
+    @RequestMapping(value="/controllers/searchRooms", method= RequestMethod.GET)
+    public List<Room> searchRooms(@RequestParam String name) {
+
+        List<Room> roomList = new ArrayList<>();
+
+        roomList = (List<Room>) roomRepository.findByNameContainingIgnoreCase(name);
 
         return roomList;
     }
