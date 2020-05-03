@@ -1,0 +1,3 @@
+INSERT INTO CONTAINER_TYPES (id, name) VALUES (1, 'Cupboard');
+INSERT INTO CONTAINER_TYPES (id, name) VALUES (2, 'Drawer');
+INSERT INTO CONTAINER_TYPES (id, name) VALUES (3, 'Table');
